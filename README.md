@@ -1,5 +1,7 @@
 # AFD vs Autómata Celular: ciclo cardiaco
 
+**Aplicación en línea:** https://app-web-afd-vs-ac.netlify.app
+
 Aplicación web que compara dos modelos discretos del ciclo cardiaco:
 
 - **Autómata Finito Determinista (AFD):** valida cadenas sobre Σ = {p, t, v, T}. Muestra el significado de cada onda, el diagrama de estados (con el mismo acomodo que el póster), una animación paso a paso y el electrocardiograma que genera la cadena.
