@@ -187,3 +187,6 @@ main { max-width: 1100px; margin: 0 auto; padding: 16px; }
 .fases td:first-child { font-weight: bold; }
 .boton:disabled { opacity: .5; cursor: not-allowed; }
 @media (max-width: 800px) { .simulador { grid-template-columns: 1fr; } }
+
+.dos-columnas > .caja { display: flex; flex-direction: column; }
+.dos-columnas > .caja > .boton { margin-top: auto; align-self: flex-start; }
