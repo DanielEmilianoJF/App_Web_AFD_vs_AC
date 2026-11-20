@@ -3,259 +3,210 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Autómatas del Corazón</title>
+  <title>AFD vs Autómata Celular</title>
   <meta name="description" content="Validador de cadenas con un Autómata Finito Determinista y simulador de Autómata Celular para el ciclo cardiaco. Facultad de Ingeniería, UACH.">
   <link rel="icon" href="img/logo_fing.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar__inner">
+  <header class="encabezado">
+    <div class="encabezado__fila">
       <img class="logo" src="img/logo_uach.png" alt="Universidad Autónoma de Chihuahua">
-      <div class="brand">
-        <span class="brand__kicker">Modelos computacionales · Ciclo cardiaco</span>
-        <h1 class="brand__title">Autómatas del Corazón</h1>
+      <div class="titulo">
+        <h1>Autómata Finito Determinista vs Autómata Celular</h1>
+        <p>Modelado del ciclo cardiaco · Facultad de Ingeniería, UACH</p>
       </div>
       <img class="logo" src="img/logo_fing.png" alt="Facultad de Ingeniería UACH">
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Cambiar tema claro u oscuro" title="Cambiar tema">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
     </div>
-    <nav class="tabs" role="tablist" aria-label="Secciones">
-      <button class="tab is-active" role="tab" data-tab="inicio" aria-selected="true">Inicio</button>
-      <button class="tab" role="tab" data-tab="afd" aria-selected="false">Autómata Finito</button>
-      <button class="tab" role="tab" data-tab="ac" aria-selected="false">Autómata Celular</button>
-      <button class="tab" role="tab" data-tab="stats" aria-selected="false">Estadísticas</button>
+    <nav class="menu">
+      <button class="menu__btn activo" data-tab="inicio">Inicio</button>
+      <button class="menu__btn" data-tab="afd">Autómata Finito Determinista</button>
+      <button class="menu__btn" data-tab="ac">Autómata Celular</button>
     </nav>
   </header>
 
   <main>
-    <!-- =================== INICIO =================== -->
-    <section class="panel is-active" id="tab-inicio" role="tabpanel">
-      <div class="hero">
-        <div class="hero__text">
-          <p class="eyebrow">AFD vs Autómata Celular</p>
-          <h2>¿Qué modelo representa mejor un latido sano?</h2>
-          <p class="lead">Explora dos modelos matemáticos discretos del ciclo cardiaco. El <strong>AFD</strong> valida si una secuencia de eventos eléctricos es correcta. El <strong>Autómata Celular</strong> genera el ciclo en paralelo sobre las cuatro cavidades del corazón.</p>
-          <div class="hero__cta">
-            <button class="btn btn--primary" data-goto="afd">Validar una cadena</button>
-            <button class="btn btn--ghost" data-goto="ac">Ver el corazón latir</button>
-          </div>
+    <!-- ===================== INICIO ===================== -->
+    <section class="pagina activa" id="tab-inicio">
+      <div class="caja aviso">
+        Esta aplicación forma parte de una investigación presentada como póster en el
+        <strong>Congreso Nacional de la Sociedad Matemática Mexicana (SMM)</strong>.
+      </div>
+
+      <div class="caja">
+        <h2>Acerca del proyecto</h2>
+        <p><strong>Título:</strong> Análisis comparativo entre autómatas celulares y autómatas finitos deterministas para poder modelar el ciclo cardiaco.</p>
+        <p>En este trabajo se comparan dos modelos matemáticos discretos para saber qué tan bien representan un ciclo cardiaco sano, considerando la estructura de cada modelo y su capacidad para representar los estados fisiológicos del corazón: diástole, sístole y período refractario.</p>
+      </div>
+
+      <div class="dos-columnas">
+        <div class="caja">
+          <h2>Autómata Finito Determinista (AFD)</h2>
+          <p>Modelo matemático que lee una cadena de símbolos, uno por uno, y decide si la acepta o la rechaza. Es determinista porque para cada estado y cada símbolo existe una sola transición posible.</p>
+          <p>En este proyecto, los símbolos son los eventos eléctricos del corazón (<code>p</code>, <code>t</code>, <code>v</code>, <code>T</code>) y el AFD revisa si la secuencia es fisiológicamente correcta.</p>
+          <button class="boton" data-goto="afd">Ir al AFD</button>
         </div>
-        <div class="hero__art" aria-hidden="true">
-          <svg viewBox="0 0 200 180" class="beating-heart">
-            <defs>
-              <linearGradient id="hg" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#ff6b81"/><stop offset="1" stop-color="#c81d4a"/>
-              </linearGradient>
-            </defs>
-            <path fill="url(#hg)" d="M100 165 C 30 115, 5 80, 20 45 C 35 10, 80 10, 100 45 C 120 10, 165 10, 180 45 C 195 80, 170 115, 100 165 Z"/>
-            <polyline class="hero-ecg" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"
-              points="20,90 60,90 70,80 80,90 92,90 100,40 110,130 118,90 140,90 152,75 164,90 182,90"/>
-          </svg>
+        <div class="caja">
+          <h2>Autómata Celular (AC)</h2>
+          <p>Modelo formado por una rejilla de celdas. Cada celda tiene un estado y, en cada paso de tiempo, todas cambian al mismo tiempo según reglas locales.</p>
+          <p>En este proyecto la rejilla es de 2×2: las dos celdas de arriba son las aurículas y las dos de abajo son los ventrículos.</p>
+          <button class="boton" data-goto="ac">Ir al Autómata Celular</button>
         </div>
       </div>
 
-      <div class="cards-2">
-        <article class="card card--link" data-goto="afd">
-          <div class="card__icon">Σ</div>
-          <h3>Autómata Finito Determinista</h3>
-          <p>A = (Q, Σ, δ, q0, F). Procesa una cadena de símbolos <code>p t v T</code> y decide si la secuencia es fisiológicamente correcta.</p>
-          <span class="card__more">Abrir validador →</span>
-        </article>
-        <article class="card card--link" data-goto="ac">
-          <div class="card__icon">▦</div>
-          <h3>Autómata Celular</h3>
-          <p>AC = (L, S, N, δ). Una malla 2×2 de aurículas y ventrículos que evoluciona en paralelo, guiada por un marcapasos.</p>
-          <span class="card__more">Abrir simulador →</span>
-        </article>
+      <div class="caja">
+        <h2>Comparación</h2>
+        <div class="tabla-scroll"><table class="tabla">
+          <thead><tr><th>Aspecto</th><th>AFD</th><th>Autómata Celular</th></tr></thead>
+          <tbody>
+            <tr><td>Tipo de modelo</td><td>Validador secuencial</td><td>Simulador paralelo</td></tr>
+            <tr><td>Pregunta que responde</td><td>¿Es válida esta secuencia?</td><td>¿Cómo es un ciclo cardiaco sano?</td></tr>
+            <tr><td>Entrada</td><td>Cadena de eventos (como un ECG)</td><td>Estado inicial del corazón (AD, VS)</td></tr>
+            <tr><td>Salida</td><td>Acepta o rechaza la cadena</td><td>Evolución de las cuatro cavidades</td></tr>
+          </tbody>
+        </table></div>
+        <p>Ambos modelos se complementan: el autómata celular genera secuencias válidas y el AFD puede usarlas como casos de prueba.</p>
       </div>
 
-      <div class="card">
-        <h3>Resultados y comparación</h3>
-        <div class="table-wrap">
-          <table class="compare">
-            <thead><tr><th>Aspecto</th><th>AFD</th><th>Autómata Celular</th></tr></thead>
-            <tbody>
-              <tr><td>Rol</td><td>Validador secuencial</td><td>Simulador paralelo</td></tr>
-              <tr><td>Pregunta que responde</td><td>¿Es esta secuencia válida?</td><td>¿Cómo es un ciclo cardiaco sano?</td></tr>
-              <tr><td>Entrada</td><td>Cadena de eventos (un ECG)</td><td>Configuración inicial (AD, VS)</td></tr>
-              <tr><td>Salida</td><td>Acepta o rechaza</td><td>Evolución de las 4 cavidades</td></tr>
-              <tr><td>Uso</td><td>Herramienta de diagnóstico</td><td>Modelo generativo de secuencias válidas</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="muted small">La relación es simbiótica: las secuencias que genera el autómata celular sirven como casos de prueba del AFD. Puedes probarlo en la pestaña del Autómata Celular.</p>
+      <div class="caja">
+        <h2>Autores</h2>
+        <ul class="lista">
+          <li>Emiliano Piñón Marín, Facultad de Ingeniería, UACH</li>
+          <li>Daniel Emiliano Jiménez Frade, Facultad de Ingeniería, UACH</li>
+          <li>Gabriel Arenas Ballesteros, Facultad de Medicina y Ciencias Biomédicas, UACH</li>
+        </ul>
+        <p class="nota">Agradecimientos: Mtra. Ana Virginia Contreras García y Dr. José Luis Herrera Aguilar. Club de Matemáticas: Transformados por Laplace.</p>
       </div>
     </section>
 
-    <!-- =================== AFD =================== -->
-    <section class="panel" id="tab-afd" role="tabpanel">
-      <div class="grid-afd">
-        <div class="card">
-          <h3>Ingresa una secuencia de eventos cardiacos</h3>
-          <label class="sr-only" for="afdInput">Cadena</label>
-          <div class="input-row">
-            <input id="afdInput" class="mono-input" type="text" autocomplete="off" spellcheck="false" placeholder="Ej. ptvTptvT" maxlength="60">
-            <button class="btn btn--icon" id="afdClear" type="button" title="Borrar" aria-label="Borrar">⌫</button>
-          </div>
-          <div class="keypad" id="keypad"></div>
-          <div class="btn-row">
-            <button class="btn btn--primary" id="afdValidate">Validar</button>
-            <button class="btn" id="afdAnimate">▶ Paso a paso</button>
-            <button class="btn btn--ghost" id="afdRandomOk" title="Generar una cadena válida">🎲 Válida</button>
-            <button class="btn btn--ghost" id="afdRandomBad" title="Generar una cadena inválida">🎲 Inválida</button>
-          </div>
-          <div class="speed">
-            <span>Lento</span><input type="range" id="afdSpeed" min="150" max="1200" step="50" value="650" aria-label="Velocidad de animación"><span>Rápido</span>
-          </div>
-          <div class="examples">
-            <span class="muted small">Ejemplos:</span>
-            <button class="chip" data-ex="ptvT">ptvT</button>
-            <button class="chip" data-ex="TptvTptvT">TptvTptvT</button>
-            <button class="chip" data-ex="vTptv">vTptv</button>
-            <button class="chip" data-ex="ptTv">ptTv</button>
-            <button class="chip" data-ex="pxv">pxv</button>
-          </div>
-        </div>
-
-        <div class="card result-card" id="afdResult" data-state="idle">
-          <div class="result-badge" id="afdBadge">Esperando cadena</div>
-          <p id="afdMotivo" class="result-text">Escribe una cadena o usa los botones de símbolos.</p>
-          <div class="tape" id="afdTape" aria-label="Cinta de entrada"></div>
-          <div class="path" id="afdPath"></div>
-        </div>
+    <!-- ===================== AFD ===================== -->
+    <section class="pagina" id="tab-afd">
+      <div class="caja">
+        <h2>¿Cómo funciona?</h2>
+        <p>El autómata se define como <strong>A = (Q, Σ, δ, q0, F)</strong>. Empieza en el estado <strong>q0</strong> y lee la cadena de izquierda a derecha. Con cada símbolo pasa a otro estado según la función de transición δ. Si al terminar la cadena queda en un estado de aceptación (<strong>q1, q2, q3 o q4</strong>), la cadena es <strong>aceptada</strong>. Si en algún momento llega un símbolo que no corresponde, pasa al estado de error <strong>q5</strong> y la cadena es <strong>rechazada</strong>.</p>
+        <table class="tabla ondas">
+          <thead><tr><th>Símbolo</th><th>Onda del ECG</th><th>Qué significa</th></tr></thead>
+          <tbody>
+            <tr><td><code>p</code></td><td>Onda P</td><td>Despolarización auricular: la señal eléctrica activa las aurículas para que se contraigan.</td></tr>
+            <tr><td><code>t</code></td><td>Repolarización auricular</td><td>Las aurículas se recuperan eléctricamente. En un ECG normal casi no se ve porque queda oculta por el complejo QRS.</td></tr>
+            <tr><td><code>v</code></td><td>Complejo QRS</td><td>Despolarización ventricular: la señal activa los ventrículos para que se contraigan.</td></tr>
+            <tr><td><code>T</code></td><td>Onda T</td><td>Repolarización ventricular: los ventrículos se recuperan y se preparan para el siguiente latido.</td></tr>
+          </tbody>
+        </table>
       </div>
 
-      <div class="grid-afd-2">
-        <div class="card">
-          <div class="card__head">
-            <h3>Diagrama de estados</h3>
-            <span class="pill" id="afdCurrent">q0 · Inicio</span>
-          </div>
-          <div class="graph-wrap"><svg id="afdGraph" viewBox="0 0 760 380" role="img" aria-label="Diagrama del autómata finito determinista"></svg></div>
+      <div class="caja">
+        <h2>Validar una cadena</h2>
+        <div class="entrada">
+          <input id="afdInput" type="text" autocomplete="off" spellcheck="false" placeholder="Ejemplo: TptvT" maxlength="40" aria-label="Cadena a validar">
         </div>
-        <div class="card">
-          <div class="card__head">
-            <h3>Electrocardiograma de tu cadena</h3>
-            <span class="heart-mini" id="afdHeart" aria-hidden="true">❤</span>
-          </div>
-          <div class="ecg-wrap"><svg id="afdEcg" viewBox="0 0 600 160" preserveAspectRatio="xMinYMid meet" role="img" aria-label="Trazo de ECG generado por la cadena"></svg></div>
-          <ul class="legend-sym" id="symLegend"></ul>
+        <div class="botones">
+          <button class="simbolo" data-sym="p">p</button>
+          <button class="simbolo" data-sym="t">t</button>
+          <button class="simbolo" data-sym="v">v</button>
+          <button class="simbolo" data-sym="T">T</button>
+          <span class="separador"></span>
+          <button class="boton" id="afdValidate">Validar</button>
+          <button class="boton secundario" id="afdAnimate">Paso a paso</button>
+          <button class="boton secundario" id="afdClear">Borrar</button>
         </div>
+        <div class="resultado" id="afdResult" data-estado="espera">
+          <strong id="afdBadge">Escribe una cadena y presiona Validar.</strong>
+          <span id="afdMotivo"></span>
+        </div>
+        <div class="recorrido" id="afdPath"></div>
       </div>
 
-      <div class="grid-afd-2">
-        <div class="card">
-          <h3>Tabla de transición δ</h3>
-          <div class="table-wrap"><table class="delta" id="deltaTable"></table></div>
-          <p class="muted small">Estado inicial q0. Estados de aceptación F = {q1, q2, q3, q4}. Cualquier otro símbolo lleva a q5.</p>
-        </div>
-        <div class="card">
-          <div class="card__head">
-            <h3>Historial</h3>
-            <button class="btn btn--small btn--ghost" id="historyClear">Limpiar</button>
-          </div>
-          <ul class="history" id="history"></ul>
-        </div>
+      <div class="caja">
+        <h2>Diagrama de estados</h2>
+        <div class="diagrama"><svg id="afdGraph" viewBox="0 0 720 270" role="img" aria-label="Diagrama de estados del AFD"></svg></div>
+        <p class="nota">Estado inicial: q0. Estados de aceptación: q1, q2, q3 y q4 (doble círculo). Estado de error: q5.</p>
+      </div>
+
+      <div class="caja">
+        <h2>Electrocardiograma de la cadena</h2>
+        <div class="ecg"><svg id="afdEcg" viewBox="0 0 600 160" preserveAspectRatio="xMinYMid meet" role="img" aria-label="Electrocardiograma generado por la cadena"></svg></div>
+        <p class="nota">Cada símbolo dibuja su onda. Si la cadena es inválida, el trazo se vuelve una línea punteada desde el símbolo que causó el error.</p>
       </div>
     </section>
 
-    <!-- =================== AC =================== -->
-    <section class="panel" id="tab-ac" role="tabpanel">
-      <div class="grid-ac">
-        <div class="card heart-card">
-          <div class="card__head">
-            <h3>Malla L (2×2)</h3>
-            <span class="pill" id="acGen">t = 0</span>
-          </div>
-          <div class="ac-grid" id="acGrid"></div>
-          <div class="pacemaker" id="pacemaker" aria-label="Fase del marcapasos"></div>
-          <div class="btn-row center">
-            <button class="btn" id="acPrev">← Anterior</button>
-            <button class="btn btn--primary" id="acPlay">▶ Play</button>
-            <button class="btn" id="acNext">Siguiente →</button>
-            <button class="btn btn--ghost" id="acReset">↺ Reiniciar</button>
-          </div>
-          <div class="speed">
-            <span>Lento</span><input type="range" id="acSpeed" min="250" max="1600" step="50" value="900" aria-label="Velocidad"><span>Rápido</span>
-          </div>
-        </div>
+    <!-- ===================== AC ===================== -->
+    <section class="pagina" id="tab-ac">
+      <div class="caja">
+        <h2>¿Cómo funciona?</h2>
+        <p>El autómata celular se define como <strong>AC = (L, S, N, δ)</strong>. La malla <strong>L</strong> es de 2×2: arriba están las aurículas y abajo los ventrículos. Cada celda puede estar en <strong>Diástole</strong> (se relaja y se llena de sangre), <strong>Sístole</strong> (se contrae y expulsa sangre) o <strong>Refractario</strong> (no puede volver a activarse todavía). En cada paso de tiempo las cuatro celdas cambian al mismo tiempo.</p>
+      </div>
 
-        <div class="side-stack">
-          <div class="card">
-            <h3>Estado global</h3>
-            <p class="global-state" id="acGlobal"></p>
-            <p class="muted small" id="acGlobalDesc"></p>
-            <div class="legend-states">
-              <span><i class="sw sw--d"></i>Diástole (llenado)</span>
-              <span><i class="sw sw--s"></i>Sístole (contracción)</span>
-              <span><i class="sw sw--r"></i>Refractario</span>
+      <div class="caja">
+        <h2>Corazón (malla 2×2)</h2>
+        <div class="simulador">
+          <div class="corazon">
+            <div class="corazon__titulos"><span>Lado izquierdo</span><span>Lado derecho</span></div>
+            <div class="corazon__malla" id="acGrid"></div>
+            <div class="leyenda">
+              <span><i class="color diastole"></i> Diástole</span>
+              <span><i class="color sistole"></i> Sístole</span>
+              <span><i class="color refractario"></i> Refractario</span>
             </div>
           </div>
-          <div class="card">
-            <h3>Secuencia generada</h3>
-            <p class="muted small">Cada paso del autómata celular emite un evento eléctrico. Envía la secuencia al AFD para verificarla.</p>
-            <div class="seq" id="acSeq"><span class="muted">Avanza la simulación…</span></div>
-            <button class="btn btn--primary btn--block" id="acSend">Validar esta secuencia en el AFD</button>
-          </div>
-          <div class="card">
-            <div class="card__head">
-              <h3>Modo editor</h3>
-              <label class="switch"><input type="checkbox" id="acEdit"><span>Activar</span></label>
+          <div class="estado-actual">
+            <p class="paso" id="acGen"></p>
+            <p id="acDesc"></p>
+            <p class="nota" id="acSig"></p>
+            <div class="botones">
+              <button class="boton secundario" id="acPrev">Anterior</button>
+              <button class="boton" id="acPlay">Reproducir</button>
+              <button class="boton secundario" id="acNext">Siguiente</button>
+              <button class="boton secundario" id="acReset">Reiniciar</button>
             </div>
-            <p class="muted small">Con el modo editor activo, toca cada cavidad para cambiar su estado y comprueba si la configuración cumple las reglas de δ.</p>
-            <button class="btn btn--block" id="acValidate" disabled>Validar configuración</button>
-            <div class="config-result" id="acConfigResult"></div>
           </div>
         </div>
       </div>
 
-      <div class="card">
-        <h3>Reglas de transición δ</h3>
-        <div class="rules">
-          <div class="rule"><span class="tag tag--d">AD</span> → <span class="tag tag--s">VS</span><p>Si las aurículas están en diástole, los ventrículos deben estar en sístole.</p></div>
-          <div class="rule"><span class="tag tag--s">AS</span> → <span class="tag tag--d">VD</span><p>Si las aurículas están en sístole, los ventrículos deben estar en diástole.</p></div>
-          <div class="rule"><span class="tag tag--r">AR</span> → <span class="tag tag--r">VR</span><p>Si las aurículas están refractarias, los ventrículos también.</p></div>
-        </div>
-        <p class="muted small">Vecindad vertical N: cada ventrículo depende de su estado y de la aurícula superior. Las aurículas siguen la señal global del marcapasos.</p>
+      <div class="caja">
+        <h2>¿Qué pasa en cada estado?</h2>
+        <div class="tabla-scroll"><table class="tabla fases" id="acFases"></table></div>
+        <p class="nota">El renglón marcado es el estado actual de la simulación.</p>
       </div>
-    </section>
 
-    <!-- =================== ESTADÍSTICAS =================== -->
-    <section class="panel" id="tab-stats" role="tabpanel">
-      <div class="kpis" id="kpis"></div>
-      <div class="grid-stats">
-        <div class="card"><h3>Cadenas aceptadas vs rechazadas</h3><div id="chartDonut" class="chart"></div></div>
-        <div class="card"><h3>¿Qué eventos usas más?</h3><div id="chartSymbols" class="chart"></div></div>
-        <div class="card"><h3>¿En qué fase fallan las cadenas?</h3><div id="chartFail" class="chart"></div><p class="muted small">Estado en el que estaba el AFD cuando llegó el símbolo que lo mandó a error.</p></div>
-        <div class="card"><h3>Tiempo del corazón en cada fase (AC)</h3><div id="chartPhases" class="chart"></div></div>
-      </div>
-      <div class="card">
-        <div class="card__head">
-          <h3>Datos curiosos</h3>
-          <button class="btn btn--small btn--ghost" id="statsReset">Reiniciar estadísticas</button>
+      <div class="caja">
+        <h2>Reglas de transición (δ)</h2>
+        <div class="dos-columnas sin-margen">
+          <div>
+            <h3>Regla 1. Aurículas (marcapasos)</h3>
+            <p>Las aurículas no dependen de sus vecinas: siguen una señal global del marcapasos que se repite siempre en este orden:</p>
+            <p class="ciclo">AD → AR → AS → AR → AD → …</p>
+          </div>
+          <div>
+            <h3>Regla 2. Ventrículos (vecindad vertical)</h3>
+            <p>Cada ventrículo cambia según la aurícula que tiene directamente arriba:</p>
+            <table class="tabla">
+              <thead><tr><th>Si la aurícula está en…</th><th>el ventrículo pasa a…</th></tr></thead>
+              <tbody>
+                <tr><td>AD (Diástole)</td><td>VS (Sístole)</td></tr>
+                <tr><td>AS (Sístole)</td><td>VD (Diástole)</td></tr>
+                <tr><td>AR (Refractario)</td><td>VR (Refractario)</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <ul class="facts" id="facts"></ul>
+        <p class="nota">Cualquier otra combinación se considera inválida, por ejemplo aurículas y ventrículos en sístole al mismo tiempo.</p>
+      </div>
+
+      <div class="caja">
+        <h2>Relación con el AFD</h2>
+        <p>Cada paso del autómata celular corresponde a un evento eléctrico. Esta es la secuencia que se ha generado:</p>
+        <div class="secuencia" id="acSeq">—</div>
+        <button class="boton" id="acSend">Validar esta secuencia en el AFD</button>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div>
-      <strong>Análisis comparativo entre autómatas celulares y autómatas finitos deterministas para modelar el ciclo cardiaco</strong>
-      <p>Emiliano Piñón Marín · Daniel Emiliano Jiménez Frade (Facultad de Ingeniería, UACH) · Gabriel Arenas Ballesteros (Facultad de Medicina y Ciencias Biomédicas)</p>
-      <p class="muted">Club de Matemáticas: Transformados por Laplace</p>
-    </div>
+  <footer class="pie">
+    Facultad de Ingeniería · Universidad Autónoma de Chihuahua · Póster para el Congreso Nacional de la SMM
   </footer>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
   <script src="js/automatas.js"></script>
-  <script src="js/charts.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
